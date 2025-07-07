@@ -1,0 +1,131 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Backend",
+            "type": "shell",
+            "command": "flask",
+            "args": ["run"],
+            "options": {
+                "cwd": "${workspaceFolder}/backend"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Start Frontend",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "dev"],
+            "options": {
+                "cwd": "${workspaceFolder}/frontend"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Install Backend Dependencies",
+            "type": "shell",
+            "command": "pip",
+            "args": ["install", "-r", "requirements.txt"],
+            "options": {
+                "cwd": "${workspaceFolder}/backend"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        },
+        {
+            "label": "Install Frontend Dependencies",
+            "type": "shell",
+            "command": "npm",
+            "args": ["install"],
+            "options": {
+                "cwd": "${workspaceFolder}/frontend"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        },
+        {
+            "label": "Start Ollama",
+            "type": "shell",
+            "command": "ollama",
+            "args": ["serve"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Pull Llama Model",
+            "type": "shell",
+            "command": "ollama",
+            "args": ["pull", "llama3.2"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        },
+        {
+            "label": "Start All Services",
+            "dependsOrder": "parallel",
+            "dependsOn": [
+                "Start Ollama",
+                "Start Backend", 
+                "Start Frontend"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        }
+    ]
+}
